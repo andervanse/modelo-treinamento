@@ -1,0 +1,106 @@
+﻿@model ControlePendencias.Application.ViewModels.PendenciaViewModel
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Pendência</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Prioridade, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EnumDropDownListFor(model => model.Prioridade, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Prioridade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Complexidade, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EnumDropDownListFor(model => model.Complexidade, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Complexidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EnumDropDownListFor(model => model.Status, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdResponsavelSelecionado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(model => model.IdResponsavelSelecionado, (IEnumerable<SelectListItem>)ViewBag.Responsaveis, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdResponsavelSelecionado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            <div id="datepick" class="input-group date col-md-4">
+                @Html.TextBoxFor(model => model.DataFinal, "{0:dd/MM/yyyy}", new { @class = "form-control", @readonly = true })
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+            @Html.ValidationMessageFor(model => model.DataFinal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+   
+    <div class="form-group text-right">
+        <div class="col-md-4">
+            <input type="submit" value="Salvar" class="btn btn-default" />
+            <a href="@Url.Action("Index", "Pendencias")" type="button" class="btn btn-danger">cancelar</a>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datepick').datepicker({
+                format: 'dd/mm/yyyy',
+                locale: 'pt-br',
+                todayHighlight: true,
+                autoclose: true
+            });
+        });
+    </script>
+}
+
+

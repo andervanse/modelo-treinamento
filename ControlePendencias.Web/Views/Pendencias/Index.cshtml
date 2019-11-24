@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ControlePendencias.Application.ViewModels.PendenciaViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Pendências</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Novo", "", new { @type="button", @class="btn btn-primary" })
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFinal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataCadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFinal)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.Id }) |
+            @Html.ActionLink("Detalhe", "Detalhe", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

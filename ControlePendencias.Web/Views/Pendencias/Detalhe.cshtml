@@ -1,0 +1,58 @@
+﻿@model ControlePendencias.Application.ViewModels.PendenciaViewModel
+
+@{
+    ViewBag.Title = "Detalhe";
+}
+
+<h2>Detalhe</h2>
+
+<div>
+    <h4>Detalhes da Pendência</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsavelAtual.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsavelAtual.Nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
